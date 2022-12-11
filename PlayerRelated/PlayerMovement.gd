@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var dashParticles = $DashParticles
 onready var playerPosition = $PlayerPosition
 onready var knifeReloadTimer = $KnifeReload
-const knifeScene = preload("res://Knife.tscn")
+const knifeScene = preload("res://PlayerRelated/knife/Knife.tscn")
 
 export (int) var walkSpeed = 400
 export (int) var dashSpeed = 2000

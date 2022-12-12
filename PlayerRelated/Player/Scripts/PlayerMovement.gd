@@ -5,8 +5,13 @@ onready var playerPosition = $PlayerPosition
 onready var knifeReloadTimer = $KnifeReload
 const knifeScene = preload("res://PlayerRelated/knife/Knife.tscn")
 
+var baseDamage = 100
+
 export (int) var walkSpeed = 400
 export (int) var dashSpeed = 2000
+export (int) var life = 3
+export (float) var attackSpeed = 1.0
+export (float) var damage = baseDamage
 
 var velocity = Vector2()
 var direction = Vector2()

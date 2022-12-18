@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://PlayerRelated/Player/Scripts/PlayerMovement.gd" type="Script" id=1]
-[ext_resource path="res://PlayerRelated/Player/Sprites/idle.png" type="Texture" id=2]
-[ext_resource path="res://PlayerRelated/Player/Sprites/running.png" type="Texture" id=3]
+[ext_resource path="res://PlayerRelated/Player/Sprites/player.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -24,87 +23,44 @@ orbit_velocity_random = 0.0
 scale = 5.0
 color_initial_ramp = SubResource( 5 )
 
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "idle"
-
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "running"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
-
-[sub_resource type="AnimationNodeStateMachine" id=10]
-states/idle/node = SubResource( 6 )
-states/idle/position = Vector2( 217.667, 68.3333 )
-states/running/node = SubResource( 7 )
-states/running/position = Vector2( 401.667, 69.6667 )
-transitions = [ "idle", "running", SubResource( 8 ), "running", "idle", SubResource( 9 ) ]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
-
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=6]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimationPlayer/idle:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
 "update": 0,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimationPlayer/running:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AnimationPlayer/idle:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ ExtResource( 2 ) ]
+"values": [  ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=7]
 resource_name = "idle"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimationPlayer/idle:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 5 ]
+"values": [ 0, 1, 2, 3, 4, 4 ]
 }
 
-[sub_resource type="Animation" id=14]
-resource_name = "running"
+[sub_resource type="Animation" id=8]
+resource_name = "run"
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimationPlayer/running:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -113,8 +69,28 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+"values": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
 }
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/idle/node = SubResource( 14 )
+states/idle/position = Vector2( 321.667, 69.6667 )
+states/run/node = SubResource( 15 )
+states/run/position = Vector2( 545.667, 69.6667 )
+transitions = [ "idle", "run", SubResource( 16 ), "run", "idle", SubResource( 17 ) ]
+start_node = "idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 527, 305 )
@@ -128,7 +104,7 @@ script = ExtResource( 1 )
 position = Vector2( 0, 2 )
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="Player"]
-position = Vector2( 0, 4 )
+position = Vector2( -1, 7 )
 shape = SubResource( 2 )
 
 [node name="DashParticles" type="Particles2D" parent="Player"]
@@ -144,22 +120,19 @@ process_material = SubResource( 3 )
 wait_time = 0.5
 one_shot = true
 
-[node name="AnimationTree" type="AnimationTree" parent="Player"]
-tree_root = SubResource( 10 )
-anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 11 )
+[node name="Sprite" type="Sprite" parent="Player"]
+texture = ExtResource( 2 )
+hframes = 8
+vframes = 2
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
-anims/RESET = SubResource( 12 )
-anims/idle = SubResource( 13 )
-anims/running = SubResource( 14 )
+anims/RESET = SubResource( 6 )
+anims/idle = SubResource( 7 )
+anims/run = SubResource( 8 )
 
-[node name="idle" type="Sprite" parent="Player/AnimationPlayer"]
-position = Vector2( 527, 305 )
-texture = ExtResource( 2 )
-hframes = 6
-
-[node name="running" type="Sprite" parent="Player/AnimationPlayer"]
-position = Vector2( 530, 307 )
-texture = ExtResource( 3 )
-hframes = 8
+[node name="AnimationTree" type="AnimationTree" parent="Player"]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 13 )

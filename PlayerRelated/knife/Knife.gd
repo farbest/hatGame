@@ -3,6 +3,8 @@ extends KinematicBody2D
 var velocity = Vector2()
 var speed = 10
 
+export (int)var damage = 1
+
 
 func _physics_process(_delta):
 	var angle = get_global_transform().get_rotation()

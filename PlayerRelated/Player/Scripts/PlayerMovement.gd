@@ -82,10 +82,13 @@ func player_movement():
 
 func player_shooting():
 	if Input.is_mouse_button_pressed(BUTTON_LEFT) and knifeReloadTimer.is_stopped():
+
 		var knife = knifeScene.instance()
+		get_tree().root.add_child(knife)
+		
 		knife.position = playerPosition.global_position
 		knife.look_at(get_global_mouse_position())
-		get_tree().root.add_child(knife)
+
 		knifeReloadTimer.start()
 
 

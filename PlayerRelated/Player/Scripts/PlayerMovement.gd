@@ -1,21 +1,21 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-onready var dashParticles = $DashParticles
-onready var playerPosition = $PlayerPosition
-onready var knifeReloadTimer = $KnifeReload
-onready var sprite = $Sprite
-onready var animationTree = $AnimationTree
+@onready var dashParticles = $DashParticles
+@onready var playerPosition = $PlayerPosition
+@onready var knifeReloadTimer = $KnifeReload
+@onready var sprite = $Sprite2D
+@onready var animationTree = $AnimationTree
 const knifeScene = preload("res://PlayerRelated/knife/Knife.tscn")
 
 var baseDamage = 100
 
-export (int) var walkSpeed = 400
-export (int) var dashSpeed = 2000
-export (int) var healthPoints = 3
-export (float) var attackSpeed = 1.0
-export (float) var damage = baseDamage
+@export  var walkSpeed = 400
+@export  var dashSpeed = 2000
+@export  var healthPoints = 3
+@export  var attackSpeed = 1.0
+@export  var damage = baseDamage
 
-var velocity = Vector2()
+var vel = Vector2()
 var direction = Vector2()
 
 var canDash = true
@@ -25,7 +25,7 @@ func init_dash():
 	canDash = false
 	isDashing =true
 	dashParticles.set_emitting(true)
-	yield(get_tree().create_timer(0.1),"timeout")
+	await get_tree().create_timer(0.1).timeout
 	dashParticles.set_emitting(false)
 	canDash = true
 	isDashing = false
@@ -33,7 +33,7 @@ func init_dash():
 func dash(dashDirection):
 	if dashDirection.x == 0 && dashDirection.y == 0:
 		dashDirection = Vector2(1,0)
-	velocity = dashDirection.normalized() * dashSpeed
+	vel = dashDirection.normalized() * dashSpeed
 	
 
 func player_movement():
@@ -67,7 +67,7 @@ func player_movement():
 		if isDashing:
 			dash(newDirection)
 		else:
-			velocity = newDirection.normalized() * walkSpeed
+			vel = newDirection.normalized() * walkSpeed
 			animationTree.get('parameters/playback').travel('run')
 	else:
 		animationTree.get('parameters/playback').travel('idle')
@@ -77,13 +77,13 @@ func player_movement():
 		
 	sprite.flip_h = direction.x == -1
 		
-	velocity.x = lerp(velocity.x,0,0.3)
-	velocity.y = lerp(velocity.y,0,0.3)
+	vel.x = lerp(vel.x,0.0,0.3)
+	vel.y = lerp(vel.y,0.0,0.3)
 
 func player_shooting():
-	if Input.is_mouse_button_pressed(BUTTON_LEFT) and knifeReloadTimer.is_stopped():
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and knifeReloadTimer.is_stopped():
 
-		var knife = knifeScene.instance()
+		var knife = knifeScene.instantiate()
 		get_tree().root.add_child(knife)
 		
 		knife.position = playerPosition.global_position
@@ -95,4 +95,6 @@ func player_shooting():
 func _physics_process(_delta):
 	player_movement()
 	player_shooting()
-	velocity = move_and_slide(velocity)
+	set_velocity(vel)
+	move_and_slide()
+	vel = vel

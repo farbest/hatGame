@@ -4,7 +4,7 @@
 
 [sub_resource type="CapsuleShape2D" id=2]
 
-[node name="BaseEnnemyKbody" type="KinematicBody2D"]
+[node name="BaseEnnemyKbody" type="CharacterBody2D"]
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4

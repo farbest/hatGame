@@ -1,0 +1,9 @@
+res://default_env.tres
+res://TestScene.tscn
+res://PlayerRelated/Player.tscn
+res://PlayerRelated/Player/Scripts/PlayerMovement.gd
+res://PlayerRelated/knife/Knife.tscn
+res://PlayerRelated/knife/Knife.gd
+res://BaseEntity/Hitbox/Hitbox.tscn
+res://BaseEntity/Hitbox/Hitbox.gd
+res://Ennemies/TestEnnemy.tscn

@@ -1,8 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://smjhcdspb0w"]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id="1"]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id="2"]
 
 [node name="BaseEnnemyKbody" type="CharacterBody2D"]
 
@@ -11,9 +11,9 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="HurtBox" type="Area2D" parent="."]
 
 [node name="HurtboxShape" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource( 2 )
+shape = SubResource("2")

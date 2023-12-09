@@ -94,7 +94,7 @@ states/run/node = SubResource("15")
 states/run/position = Vector2(545.667, 69.6667)
 transitions = ["idle", "run", SubResource("16"), "run", "idle", SubResource("17")]
 
-[node name="Node2D" type="Node2D"]
+[node name="Player" type="Node2D"]
 position = Vector2(-2, -2)
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -143,4 +143,4 @@ active = true
 texture = ExtResource("2")
 hframes = 8
 vframes = 2
-frame = 3
+frame = 13

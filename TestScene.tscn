@@ -6,13 +6,13 @@
 [node name="World" type="Node2D"]
 position = Vector2(527, 305)
 
-[node name="Node2D" parent="." instance=ExtResource("1")]
-position = Vector2(32, 16)
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("2")]
-position = Vector2(68, 97)
-
 [node name="TileMap" type="TileMap" parent="."]
 format = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="TestEnnemy" parent="." instance=ExtResource("2")]
+position = Vector2(2, 76)
+
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(-2, -72)

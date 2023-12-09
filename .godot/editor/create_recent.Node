@@ -1,2 +1,4 @@
 CollisionShape2D
+Sprite2D
+TileMap
 Area2D

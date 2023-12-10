@@ -7,6 +7,10 @@ extends CharacterBody2D
 @onready var animationTree = $AnimationTree
 const knifeScene = preload("res://PlayerRelated/knife/Knife.tscn")
 
+#animation state
+const RUN = "run"
+const IDLE = "idle"
+
 var baseDamage = 100
 
 @export  var walkSpeed = 400
@@ -14,9 +18,6 @@ var baseDamage = 100
 @export  var healthPoints = 3
 @export  var attackSpeed = 1.0
 @export  var damage = baseDamage
-
-var vel = Vector2()
-var direction = Vector2()
 
 var canDash = true
 var isDashing = false
@@ -33,41 +34,35 @@ func init_dash():
 func dash(dashDirection):
 	if dashDirection.x == 0 && dashDirection.y == 0:
 		dashDirection = Vector2(1,0)
-	vel = dashDirection.normalized() * dashSpeed
+	var vel = dashDirection.normalized() * dashSpeed
 	
-
-func player_movement():
+func get_movement_direction():
+	var direction = Vector2()
 	
-	var movingX = false
-	var movingY = false
+	direction.x = 0
+	direction.y = 0
+	
 	if Input.is_action_pressed("ui_right"):
 		direction.x = 1
-		movingX = true
-
 	if Input.is_action_pressed("ui_left"):
 		direction.x = -1
-		movingX = true
-
 	if Input.is_action_pressed("ui_down"):
 		direction.y = 1
-		movingY = true
-
 	if Input.is_action_pressed("ui_up"):
 		direction.y = -1
-		movingY = true
+		
+	return direction
 
-	var newDirection = Vector2()
+func get_player_movement():
+	
+	var direction = get_movement_direction()
+	var vel = Vector2()
 
-	if movingX || movingY :
-		if(movingX):
-			newDirection.x = direction.x
-		if(movingY):
-			newDirection.y = direction.y
-			
+	if direction.x != 0 || direction.y != 0 :
 		if isDashing:
-			dash(newDirection)
+			vel = dash(direction)
 		else:
-			vel = newDirection.normalized() * walkSpeed
+			vel = direction.normalized() * walkSpeed
 			animationTree.get('parameters/playback').travel('run')
 	else:
 		animationTree.get('parameters/playback').travel('idle')
@@ -75,14 +70,13 @@ func player_movement():
 	if Input.is_action_just_pressed("dash"):
 		init_dash()
 		
-	sprite.flip_h = direction.x == -1
-		
 	vel.x = lerp(vel.x,0.0,0.3)
 	vel.y = lerp(vel.y,0.0,0.3)
+	
+	return vel
+	
 
-func player_shooting():
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and knifeReloadTimer.is_stopped():
-
+func shoot_projectile():
 		var knife = knifeScene.instantiate()
 		get_tree().root.add_child(knife)
 		
@@ -91,10 +85,15 @@ func player_shooting():
 
 		knifeReloadTimer.start()
 
+func set_sprite_direction(vel:Vector2):
+	sprite.flip_h = vel.x < 0
 
 func _physics_process(_delta):
-	player_movement()
-	player_shooting()
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and knifeReloadTimer.is_stopped():
+		shoot_projectile()
+		
+	var vel = get_player_movement()
+	set_sprite_direction(vel)
 	set_velocity(vel)
 	move_and_slide()
-	vel = vel
+

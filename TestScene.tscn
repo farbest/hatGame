@@ -12,7 +12,7 @@ format = 2
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="TestEnnemy" parent="." instance=ExtResource("2")]
-position = Vector2(2, 76)
+position = Vector2(4, 98)
 
 [node name="Player" parent="." instance=ExtResource("1")]
-position = Vector2(-2, -72)
+position = Vector2(-17, -63)

@@ -5,3 +5,5 @@ res://PlayerRelated/knife/Knife.tscn
 res://Ennemies/TestEnnemy.tscn
 res://PlayerRelated/knife/Knife.gd
 res://Ennemies/BaseEnnemy/BaseEnnemyPreset.tscn
+res://PlayerRelated/Player/Scripts/PlayerMovement.gd
+res://Ennemies/BaseEnnemy/BaseEnnemyPreset.gd

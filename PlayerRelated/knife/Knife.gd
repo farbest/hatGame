@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 var velt = Vector2()
 var speed = 10

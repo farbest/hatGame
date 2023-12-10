@@ -94,30 +94,27 @@ states/run/node = SubResource("15")
 states/run/position = Vector2(545.667, 69.6667)
 transitions = ["idle", "run", SubResource("16"), "run", "idle", SubResource("17")]
 
-[node name="Player" type="Node2D"]
-position = Vector2(-2, -2)
-
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 7)
 shape = SubResource("CircleShape2D_5hxje")
 
-[node name="PlayerPosition" type="Marker2D" parent="Player"]
+[node name="PlayerPosition" type="Marker2D" parent="."]
 position = Vector2(0, 2)
 
-[node name="PlayerHitbox" type="Area2D" parent="Player"]
+[node name="PlayerHitbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 5
 
-[node name="PlayerCollision" type="CollisionShape2D" parent="Player/PlayerHitbox"]
+[node name="PlayerCollision" type="CollisionShape2D" parent="PlayerHitbox"]
 position = Vector2(-1, 7)
 shape = SubResource("2")
 
-[node name="DashParticles" type="GPUParticles2D" parent="Player"]
+[node name="DashParticles" type="GPUParticles2D" parent="."]
 z_index = -1
 position = Vector2(0, 3)
 emitting = false
@@ -125,22 +122,25 @@ amount = 150
 process_material = SubResource("3")
 preprocess = 70.59
 
-[node name="KnifeReload" type="Timer" parent="Player"]
+[node name="KnifeReload" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_5hyi8")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="Player"]
+[node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("12")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2")
 hframes = 8
 vframes = 2
 frame = 13
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(-2, -2)

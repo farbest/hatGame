@@ -1,2 +1,7 @@
 res://default_env.tres
 res://TestScene.tscn
+res://PlayerRelated/Player.tscn
+res://PlayerRelated/knife/Knife.tscn
+res://Ennemies/TestEnnemy.tscn
+res://PlayerRelated/Player/Scripts/PlayerMovement.gd
+res://tilemap.res

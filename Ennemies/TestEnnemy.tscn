@@ -24,6 +24,7 @@ shape = SubResource("RectangleShape2D_k2nf4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_rj27x")
+debug_color = Color(0.933333, 0, 0.647059, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2")

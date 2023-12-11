@@ -35,6 +35,7 @@ func dash(dashDirection):
 	if dashDirection.x == 0 && dashDirection.y == 0:
 		dashDirection = Vector2(1,0)
 	var vel = dashDirection.normalized() * dashSpeed
+	return vel
 	
 func get_movement_direction():
 	var direction = Vector2()

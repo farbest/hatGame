@@ -1,8 +1,9 @@
-CollisionPolygon2D
-CharacterBody2D
-Node
 CollisionShape2D
-RigidBody2D
+StaticBody2D
 Sprite2D
+CharacterBody2D
+CollisionPolygon2D
+Node
+RigidBody2D
 TileMap
 Area2D

@@ -13,5 +13,5 @@ func _physics_process(_delta):
 	velt = move_and_collide(velt*speed)
 
 
-func _on_hitbox_area_entered(area):
+func _on_hitbox_area_entered(_area):
 	queue_free()

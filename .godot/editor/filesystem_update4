@@ -6,3 +6,11 @@ res://TestScene.tscn
 res://Items/Mag_hat_power_up.gd
 res://PlayerRelated/knife/Knife.tscn
 res://PlayerRelated/knife/Knife.gd
+res://Characters/knife/Knife.tscn
+res://Projectiles/Knife.gd
+res://Characters/Ennemies/TestEnnemy.tscn
+res://temp.tscn
+res://Characters/Ennemies/Ennemy_script.gd
+res://Projectiles/Knife.tscn
+res://Scenes/TestScene.tscn
+res://Characters/Player/PlayerMovement.gd

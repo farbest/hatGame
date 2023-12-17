@@ -14,3 +14,4 @@ res://Characters/Ennemies/Ennemy_script.gd
 res://Projectiles/Knife.tscn
 res://Scenes/TestScene.tscn
 res://Characters/Player/PlayerMovement.gd
+res://Characters/Player/Player.tscn

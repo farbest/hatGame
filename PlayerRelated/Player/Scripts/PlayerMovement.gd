@@ -97,4 +97,16 @@ func _physics_process(_delta):
 	set_sprite_direction(vel)
 	set_velocity(vel)
 	move_and_slide()
+	
+func pickup_item(str):
+	print("picking " + str)
+	var sprite = Sprite2D.new()
+	sprite.texture = load("res://Items/hats.png")
+	sprite.hframes = 8
+	sprite.vframes = 15
+	sprite.frame = 16
+	sprite.move_local_y(-6)
+	self.add_child(sprite)
+	
+	
 

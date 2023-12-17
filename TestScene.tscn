@@ -1,14 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://pjgmuvgkmfdr"]
 
 [ext_resource type="PackedScene" uid="uid://b6pr823sv63fa" path="res://PlayerRelated/Player.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://bm8d1hgs3qfm6" path="res://Levels/Map1/Map1.tscn" id="1_lmadp"]
 [ext_resource type="PackedScene" uid="uid://diotkrgqfk5v6" path="res://Ennemies/TestEnnemy.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dk7j2acmedh3o" path="res://Items/Mag_hat_power_up.tscn" id="3_146s4"]
 
 [node name="World" type="Node2D"]
 position = Vector2(527, 305)
-
-[node name="Map1" parent="." instance=ExtResource("1_lmadp")]
-position = Vector2(24, -41)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
@@ -20,3 +17,5 @@ collision_mask = 1
 [node name="CharacterBody2D" parent="." instance=ExtResource("2")]
 position = Vector2(113, -10)
 collision_layer = 4
+
+[node name="MagHatPowerUp" parent="." instance=ExtResource("3_146s4")]

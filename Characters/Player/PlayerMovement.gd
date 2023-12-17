@@ -19,16 +19,12 @@ var baseDamage = 100
 @export  var attackSpeed = 1.0
 @export  var damage = baseDamage
 
-var canDash = true
 var isDashing = false
+var lastDirection = Vector2()
 
 func init_dash(): 
-	canDash = false
 	isDashing =true
-	dashParticles.set_emitting(true)
 	await get_tree().create_timer(0.1).timeout
-	dashParticles.set_emitting(false)
-	canDash = true
 	isDashing = false
 
 func dash(dashDirection):
@@ -56,15 +52,16 @@ func get_movement_direction():
 
 func get_player_movement():
 	
+	if isDashing:
+		return dash(lastDirection)
+	
 	var direction = get_movement_direction()
 	var vel = Vector2()
-
+	
 	if direction.x != 0 || direction.y != 0 :
-		if isDashing:
-			vel = dash(direction)
-		else:
-			vel = direction.normalized() * walkSpeed
-			animationTree.get('parameters/playback').travel('run')
+		lastDirection = direction
+		vel = direction.normalized() * walkSpeed
+		animationTree.get('parameters/playback').travel('run')
 	else:
 		animationTree.get('parameters/playback').travel('idle')
 		
@@ -98,15 +95,15 @@ func _physics_process(_delta):
 	set_velocity(vel)
 	move_and_slide()
 	
-func pickup_item(str):
-	print("picking " + str)
-	var sprite = Sprite2D.new()
-	sprite.texture = load("res://Items/hats.png")
-	sprite.hframes = 8
-	sprite.vframes = 15
-	sprite.frame = 16
-	sprite.move_local_y(-6)
-	self.add_child(sprite)
+func pickup_item(msg):
+	print("picking " + msg)
+	var hat_sprite = Sprite2D.new()
+	hat_sprite.texture = load("res://Items/hats.png")
+	hat_sprite.hframes = 8
+	hat_sprite.vframes = 15
+	hat_sprite.frame = 16
+	hat_sprite.move_local_y(-6)
+	self.add_child(hat_sprite)
 	
 	
 

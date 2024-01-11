@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6pr823sv63fa"]
+[gd_scene load_steps=18 format=3 uid="uid://b6pr823sv63fa"]
 
-[ext_resource type="Script" path="res://Characters/Player/PlayerMovement.gd" id="1_v7pvi"]
+[ext_resource type="Script" path="res://Characters/Player/Scripts/PlayerScript.gd" id="1_1vmtx"]
+[ext_resource type="Script" path="res://Characters/Player/Scripts/HatManager.gd" id="2_bqngr"]
 [ext_resource type="Texture2D" uid="uid://d1fuq51mqcl1" path="res://Characters/Player/player.png" id="2_ndn25"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3g8"]
@@ -97,15 +98,20 @@ transitions = ["idle", "run", SubResource("16"), "run", "idle", SubResource("17"
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_v7pvi")
+script = ExtResource("1_1vmtx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 7)
 shape = SubResource("RectangleShape2D_xb3g8")
 debug_color = Color(0.905882, 0, 0.74902, 0.419608)
 
-[node name="PlayerPosition" type="Marker2D" parent="."]
-position = Vector2(0, 2)
+[node name="KnifeThrowPosition" type="Marker2D" parent="."]
+position = Vector2(0, 6)
+
+[node name="HatPosition" type="Marker2D" parent="."]
+z_index = 2
+position = Vector2(0, -4)
+script = ExtResource("2_bqngr")
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
 collision_layer = 2
@@ -138,6 +144,7 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 texture = ExtResource("2_ndn25")
 hframes = 8
 vframes = 2

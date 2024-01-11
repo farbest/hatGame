@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvcr8u0pk1tlf"
-path="res://.godot/imported/knife_throw.png-12565b3c36c865896e82716ab8114a5a.ctex"
+uid="uid://c8uvjesmde4ts"
+path="res://.godot/imported/hats.png-af132386e30d86b3976c487b5141994e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Projectiles/knife_throw.png"
-dest_files=["res://.godot/imported/knife_throw.png-12565b3c36c865896e82716ab8114a5a.ctex"]
+source_file="res://Items/Hat_power_ups/Hat_sprites/hats.png"
+dest_files=["res://.godot/imported/hats.png-af132386e30d86b3976c487b5141994e.ctex"]
 
 [params]
 

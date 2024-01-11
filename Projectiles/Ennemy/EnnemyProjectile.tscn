@@ -1,26 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://blrtj83248cud"]
+[gd_scene load_steps=10 format=3 uid="uid://dsunsu8bu6ep5"]
 
-[ext_resource type="Script" path="res://Projectiles/Knife.gd" id="1_vxhni"]
-[ext_resource type="Texture2D" uid="uid://bvcr8u0pk1tlf" path="res://Projectiles/knife_throw.png" id="2_uasgr"]
+[ext_resource type="Script" path="res://Projectiles/Player/Knife.gd" id="1_djm6f"]
+[ext_resource type="Texture2D" uid="uid://bvcr8u0pk1tlf" path="res://Projectiles/Player/knife_throw.png" id="2_ra51e"]
 
 [sub_resource type="AtlasTexture" id="1"]
-atlas = ExtResource("2_uasgr")
+atlas = ExtResource("2_ra51e")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="2"]
-atlas = ExtResource("2_uasgr")
+atlas = ExtResource("2_ra51e")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="3"]
-atlas = ExtResource("2_uasgr")
+atlas = ExtResource("2_ra51e")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="4"]
-atlas = ExtResource("2_uasgr")
+atlas = ExtResource("2_ra51e")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="5"]
-atlas = ExtResource("2_uasgr")
+atlas = ExtResource("2_ra51e")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="6"]
@@ -54,7 +54,7 @@ position = Vector2(125, 56)
 collision_layer = 8
 collision_mask = 4
 gravity_scale = 0.0
-script = ExtResource("1_vxhni")
+script = ExtResource("1_djm6f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("6")

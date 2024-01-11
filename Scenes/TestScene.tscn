@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b6pr823sv63fa" path="res://Characters/Player/Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://diotkrgqfk5v6" path="res://Characters/Ennemies/TestEnnemy.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://dk7j2acmedh3o" path="res://Items/Mag_hat_power_up.tscn" id="3_146s4"]
+[ext_resource type="PackedScene" uid="uid://dk7j2acmedh3o" path="res://Items/Hat_power_ups/Hat_power_up.tscn" id="3_146s4"]
 
 [node name="World" type="Node2D"]
 position = Vector2(527, 305)
@@ -14,8 +14,8 @@ position = Vector2(-140, -41)
 collision_layer = 2
 collision_mask = 1
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2")]
-position = Vector2(113, -10)
-collision_layer = 4
-
 [node name="MagHatPowerUp" parent="." instance=ExtResource("3_146s4")]
+
+[node name="TestEnnemy" parent="." instance=ExtResource("2")]
+position = Vector2(214, -29)
+health_points = 3

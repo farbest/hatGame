@@ -1,11 +1,15 @@
-extends CharacterBody2D
+extends Abstract_character
+
+var pickup_factory = load("res://Items/Pickup_factory.gd")
 
 @onready var dashParticles = $DashParticles
-@onready var playerPosition = $PlayerPosition
+@onready var knifeThrowingPosition = $KnifeThrowPosition
 @onready var knifeReloadTimer = $KnifeReload
 @onready var sprite = $Sprite2D
 @onready var animationTree = $AnimationTree
-const knifeScene = preload("res://Projectiles/Knife.tscn")
+const knifeScene = preload("res://Projectiles/Player/Knife.tscn")
+
+@onready var hat_manager:HatManager = $HatPosition
 
 #animation state
 const RUN = "run"
@@ -13,7 +17,9 @@ const IDLE = "idle"
 
 var baseDamage = 100
 
-@export  var walkSpeed = 400
+@export  var baseRunSpeed = 400
+
+var runSpeed = baseRunSpeed
 @export  var dashSpeed = 2000
 @export  var healthPoints = 3
 @export  var attackSpeed = 1.0
@@ -60,7 +66,7 @@ func get_player_movement():
 	
 	if direction.x != 0 || direction.y != 0 :
 		lastDirection = direction
-		vel = direction.normalized() * walkSpeed
+		vel = direction.normalized() * runSpeed
 		animationTree.get('parameters/playback').travel('run')
 	else:
 		animationTree.get('parameters/playback').travel('idle')
@@ -78,32 +84,31 @@ func shoot_projectile():
 		var knife = knifeScene.instantiate()
 		get_tree().root.add_child(knife)
 		
-		knife.position = playerPosition.global_position
+		knife.position = knifeThrowingPosition.global_position
 		knife.look_at(get_global_mouse_position())
 
 		knifeReloadTimer.start()
 
-func set_sprite_direction(vel:Vector2):
-	sprite.flip_h = vel.x < 0
+func set_sprite_direction(lookingDirection:Vector2):
+	sprite.flip_h = lookingDirection.x < 0
 
 func _physics_process(_delta):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and knifeReloadTimer.is_stopped():
 		shoot_projectile()
 		
 	var vel = get_player_movement()
-	set_sprite_direction(vel)
+	set_sprite_direction(lastDirection)
+	hat_manager.set_sprites_direction(lastDirection)
 	set_velocity(vel)
 	move_and_slide()
 	
-func pickup_item(msg):
-	print("picking " + msg)
-	var hat_sprite = Sprite2D.new()
-	hat_sprite.texture = load("res://Items/hats.png")
-	hat_sprite.hframes = 8
-	hat_sprite.vframes = 15
-	hat_sprite.frame = 16
-	hat_sprite.move_local_y(-6)
-	self.add_child(hat_sprite)
+func pickup_item(data:Hat_data):
+	print("picking " + data.name)
+	self.add_new_hat(data)
+
+func add_new_hat(hat_data:Hat_data):
+	hat_manager.add_hat(hat_data)
+	runSpeed = (1.0 + hat_manager.get_updated_speed_modificator()) * baseRunSpeed
 	
-	
+
 

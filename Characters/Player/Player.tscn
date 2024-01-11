@@ -110,7 +110,7 @@ position = Vector2(0, 6)
 
 [node name="HatPosition" type="Marker2D" parent="."]
 z_index = 2
-position = Vector2(0, -4)
+position = Vector2(0, 4)
 script = ExtResource("2_bqngr")
 
 [node name="PlayerHitbox" type="Area2D" parent="."]

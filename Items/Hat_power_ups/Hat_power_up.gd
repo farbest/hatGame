@@ -14,15 +14,14 @@ enum HAT_TYPE{
 @export var hat_type: HAT_TYPE
 var hat_data = Hat_data.new()
 
-func get_hat_data(hat_type:HAT_TYPE):
+func get_hat_data(input_hat_type:HAT_TYPE):
 	
-	var hat_data:Hat_data = Hat_data.new()
 	var effect = Hat_effect.new()
 	var local_sprite = Sprite2D.new()
 	
 	var local_name = ""
 	
-	match hat_type:
+	match input_hat_type:
 		HAT_TYPE.BARBARIAN:
 			# Effect modification
 			local_sprite.texture = preload("res://Items/Hat_power_ups/Hat_sprites/barbarian.png")
@@ -57,22 +56,29 @@ func get_hat_data(hat_type:HAT_TYPE):
 			local_name = "wizard"
 	return self.create_hat_data(local_name, effect,local_sprite)
 	
-func create_hat_data(name,effect,sprite):
-	var hat_data = Hat_data.new()
-	hat_data.set_name(name)
-	hat_data.set_effect(effect)
-	hat_data.set_sprite(sprite)
+func create_hat_data(data_name,data_effect,data_sprite):
 	
-	return hat_data
+	var new_hat_data = Hat_data.new()
+	new_hat_data.set_name(data_name)
+	new_hat_data.set_effect(data_effect)
+	new_hat_data.set_sprite(data_sprite)
+	
+	return new_hat_data
 
 func _ready():
 	self.hat_data = self.get_hat_data(self.hat_type)
 	
-	self.hat_data.sprite.hframes = 8
-	self.hat_data.sprite.vframes = 2
-	self.hat_data.sprite.frame = 1
+	# Duplicate does not clone deeply
+	#texture has to be set first, to find out why later if relevant
+	sprite.texture = self.hat_data.sprite.texture
 	
-	sprite = self.hat_data.sprite.duplicate()
+	hat_data.sprite.hframes = 8
+	hat_data.sprite.vframes = 2
+	hat_data.sprite.frame = 1
+	
+	sprite = hat_data.sprite.duplicate()
+
+	
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("player"):
